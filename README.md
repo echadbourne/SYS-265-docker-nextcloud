@@ -2,6 +2,8 @@
 
 This is a project for setting up a Nextcloud container that uses a MYSQL container as a database. The .yaml file maps port 80 for Nextcloud to port 8080 for the localhost.
 
+Use `git clone https://echadbourne/SYS-265-docker-nextcloud` to easily clone the docker-compose.yaml file. Install git if needed.
+
 Deploy this setup with docker compose, navigate to the folder the .yaml file is in and run the command `docker compose up -d`
  - This will start the download and execution for the containers in the background of the localhost
 
