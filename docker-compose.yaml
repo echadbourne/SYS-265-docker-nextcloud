@@ -2,26 +2,26 @@ services:
   nc:
     image: nextcloud:apache
     environment:
+    #configuring nextcloud to run with the mysql database
       - MYSQL_HOST=db
       - MYSQL_PASSWORD=nextcloud
       - MYSQL_DB=nextcloud
       - MYSQL_USER=nextcloud
     ports:
+    #Configured to run on port 8080 on the localhost
       - 8080:80
     restart: always
     volumes:
       - nc_data:/var/www/html
   db:
-    # We use a mariadb image which supports both amd64 & arm64 architecture
-    #image: mariadb:10.6.4-focal
-    # If you really want to use MySQL, uncomment the following line
+    #MySQL database information, could also use mariadb if wanted
     image: mysql:8.0.27
     command: '--default-authentication-plugin=mysql_native_password'
     volumes:
       - db_data:/var/lib/mysql
     restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=SuperOldTree963
+      - MYSQL_ROOT_PASSWORD=RootPassword
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
       - MYSQL_PASSWORD=nextcloud
