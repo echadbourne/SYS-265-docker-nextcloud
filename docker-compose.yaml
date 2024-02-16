@@ -12,16 +12,22 @@ services:
     volumes:
       - nc_data:/var/www/html
   db:
-    image: postgres:alpine
-    environment:
-      - POSTGRES_PASSWORD=nextcloud
-      - POSTGRES_DB=nextcloud
-      - POSTGRES_USER=nextcloud
-    restart: always
+    # We use a mariadb image which supports both amd64 & arm64 architecture
+    #image: mariadb:10.6.4-focal
+    # If you really want to use MySQL, uncomment the following line
+    image: mysql:8.0.27
+    command: '--default-authentication-plugin=mysql_native_password'
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=SuperOldTree963
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_PASSWORD=nextcloud
     expose:
-      - 5432
+      - 3306
+      - 33060
 volumes:
   db_data:
   nc_data:
