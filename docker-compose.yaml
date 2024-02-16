@@ -2,10 +2,10 @@ services:
   nc:
     image: nextcloud:apache
     environment:
-      - POSTGRES_HOST=db
-      - POSTGRES_PASSWORD=nextcloud
-      - POSTGRES_DB=nextcloud
-      - POSTGRES_USER=nextcloud
+      - MYSQL_HOST=db
+      - MYSQL_PASSWORD=nextcloud
+      - MYSQL_DB=nextcloud
+      - MYSQL_USER=nextcloud
     ports:
       - 8080:80
     restart: always
